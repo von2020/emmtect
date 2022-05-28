@@ -1,0 +1,26 @@
+{
+  "name": "emmtech_backend",
+  "version": "1.0.0",
+  "description": "emtech technologies",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yvonne",
+  "license": "ISC",
+  "dependencies": {
+    "cloudinary": "^1.30.0",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.4",
+    "nodemon": "^2.0.16"
+  },
+
+  "engines": {
+    "node": "16.14.0"
+  }
+}
