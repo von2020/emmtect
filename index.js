@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const userRoute =  require("./routes/user");
 const authRoute =  require("./routes/auth");
 const postRoute =  require("./routes/post");
+const serviceRoute =  require("./routes/services");
 const subscriberRoute =  require("./routes/subscriber");
 const fileUpload = require('express-fileupload');
 
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/posts", postRoute);
+app.use("/api/v1/services", serviceRoute);
 app.use("/api/v1/subscribers", subscriberRoute);
 
 app.get("/", (req, res) => {
