@@ -123,11 +123,11 @@ router.get("/", async(req,res) => {
                 },
             });
         }else{
-            posts = await Post.find();
+            Services = await Service.find();
         }
 
         
-        res.status(200).json( posts );
+        res.status(200).json( Services );
     }catch(err){
         res.status(500).json(err);
     }
