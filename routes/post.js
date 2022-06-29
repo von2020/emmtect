@@ -104,7 +104,7 @@ router.delete("/:id", verifyTokenAndAdmin, async(req,res) => {
     
     try{
         await Post.findByIdAndDelete(req.params.id);
-        res.status(200).json("Product has been deleted");
+        res.status(200).json("Blog Post has been deleted");
     }catch(err){
         res.status(500).json(err);
     }
@@ -124,7 +124,14 @@ router.get("/find/:id",  async(req,res) => {
 // GET ALL POSTS
 router.get("/", async(req,res) => {
     const qNew = req.query.new;
-    const qCategory = req.query.category; 
+    const qCategory = req.query.category;
+    //start pagination
+    const page = req.query.page;
+    const limit = req.query.limit;
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+   
     try{
         let posts; 
 
@@ -140,8 +147,8 @@ router.get("/", async(req,res) => {
             posts = await Post.find();
         }
 
-        
-        res.status(200).json( posts );
+        const resultPosts = posts.slice(startIndex, endIndex)
+        res.status(200).json( resultPosts );
     }catch(err){
         res.status(500).json(err);
     }
