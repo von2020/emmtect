@@ -125,6 +125,33 @@ router.get("/find/:id",  async(req,res) => {
 router.get("/", async(req,res) => {
     const qNew = req.query.new;
     const qCategory = req.query.category;
+    
+    try{
+        let posts; 
+
+        if(qNew){
+            posts = await Post.find().sort({createdAt: -1}).limit(5);
+        }else if(qCategory){
+            posts = await Post.find({
+                categories: {
+                    $in:[qCategory],
+                },
+            });
+        }else{
+            posts = await Post.find();
+        }
+
+    
+        res.status(200).json( posts );
+    }catch(err){
+        res.status(500).json(err);
+    }
+});
+
+// GET ALL POSTS PAG
+router.get("/pag", async(req,res) => {
+    const qNew = req.query.new;
+    const qCategory = req.query.category;
     //start pagination
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
@@ -161,8 +188,8 @@ router.get("/", async(req,res) => {
     results.previous = {
         page: page - 1,
         limit: limit
+        }
     }
-}
 
         results.results = posts.slice(startIndex, endIndex)
         res.status(200).json( results );
