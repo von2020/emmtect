@@ -126,12 +126,15 @@ router.get("/", async(req,res) => {
     const qNew = req.query.new;
     const qCategory = req.query.category;
     //start pagination
-    const page = req.query.page;
-    const limit = req.query.limit;
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
 
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
-   
+
+    const results = {}
+
+    
     try{
         let posts; 
 
@@ -147,8 +150,22 @@ router.get("/", async(req,res) => {
             posts = await Post.find();
         }
 
-        const resultPosts = posts.slice(startIndex, endIndex)
-        res.status(200).json( resultPosts );
+    if(endIndex < posts.length){
+        results.next = {
+        page: page + 1,
+        limit: limit
+        }
+    }
+
+    if(startIndex > 0){
+    results.previous = {
+        page: page - 1,
+        limit: limit
+    }
+}
+
+        results.results = posts.slice(startIndex, endIndex)
+        res.status(200).json( results );
     }catch(err){
         res.status(500).json(err);
     }
