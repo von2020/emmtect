@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 
 
 const subscriberSchema = new mongoose.Schema({
-    name: { type: String, required:true, unique: true },
+    fname: { type: String, required:true },
+    lname: { type: String},
     email: { type: String, required:true},
+    message: { type: String, required:true},
     
 },
 { timestamps: true }
