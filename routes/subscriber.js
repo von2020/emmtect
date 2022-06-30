@@ -12,7 +12,7 @@ const app = express();
 
 
 // CREATE Subscriber
-router.post("/",verifyTokenAndAdmin,  async(req, res) => {
+router.post("/",  async(req, res) => {
     const newSubscriber = new Subscriber(req.body);
     console.log('seeP', newSubscriber)
     
