@@ -65,7 +65,7 @@ router.get("/find/:id",  async(req,res) => {
     
     try{
         const subscriber = await Subscriber.findById(req.params.id);
-        res.status(200).json( product ); 
+        res.status(200).json( subscriber ); 
     }catch(err){
         res.status(500).json(err);
     }
