@@ -76,7 +76,7 @@ router.get("/", async(req,res) => {
     
     try{
         subscribers = await Subscriber.find();
-        res.status(200).json( posts );
+        res.status(200).json( subscribers );
     }catch(err){
         res.status(500).json(err);
     }
