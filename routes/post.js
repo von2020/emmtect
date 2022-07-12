@@ -64,7 +64,7 @@ router.post("/image",verifyTokenAndAdmin,  function(req, res, next) {
         if (!req.files || Object.keys(req.files).length === 0) {
             return res.status(400).send('No files were uploaded.');
           }
-        const file = req.files.image;
+        const file = req.files.file;
         console.log('file', file)
         cloudinary.uploader.upload(file.tempFilePath, function(err, result){
             console.log('error', err)
