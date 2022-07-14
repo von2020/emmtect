@@ -5,6 +5,7 @@ const subscriberSchema = new mongoose.Schema({
     fname: { type: String, required:true },
     lname: { type: String},
     email: { type: String, required:true},
+    phone: { type: Number, required:true},
     message: { type: String, required:true},
     
 },
